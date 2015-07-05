@@ -1,2 +1,1 @@
-web: python ping.py
-clock: python clock.py
+web: python run.py
