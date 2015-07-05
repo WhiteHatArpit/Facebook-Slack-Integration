@@ -21,13 +21,19 @@ app_token = app_id + "|" + app_secret
 access_token = os.environ['access_token']
 
 # extend token if short lived, check for permissions
-access_token,flag = extendtoken(app_token,access_token)
+access_token,flag = extendtoken(app_id,app_secret,access_token)
 
 # report back and exit if bad token
 if flag==0:
     packetm = access_token
     posttoSlack(slack_url,app_token,access_token,packetm,packetn,count,0)
     exit()
+
+
+packetm,packetn = posttoSlack(slack_url,app_token,access_token,packetm,packetn,count,1)
+count += 1
+print "Polled: ",count
+
 
 # polls every 10mins for messages, 60mins for notification
 @sched.scheduled_job('interval', minutes=10)

@@ -3,9 +3,9 @@ import json
 import string
 
 
-def extendtoken(app_token,access_token):
-	
-	debug_url ="https://graph.facebook.com/v2.2/debug_token?input_token="+ access_token +"&access_token=" + app_token
+def extendtoken(app_id,app_secret,access_token):
+	app_token = app_id + "|" + app_secret
+	debug_url ="https://graph.facebook.com/debug_token?input_token="+ access_token +"&access_token=" + app_token
 	
 	try:
 		response = requests.get(debug_url)
@@ -29,7 +29,7 @@ def extendtoken(app_token,access_token):
 			if 'issued_at' in data['data'].keys():
 				return access_token,1
 			else:
-				url = "https://graph.facebook.com/v2.2/oauth/access_token?grant_type=fb_exchange_token&client_id=" + app_token[:16] + "&client_secret=" + app_token[17:] + "&fb_exchange_token=" + access_token
+				url = "https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token&client_id=" + app_id + "&client_secret=" + app_secret + "&fb_exchange_token=" + access_token
 				response = requests.get(url)
 				data = response.content
 				pos = string.index(data,'&')
