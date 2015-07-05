@@ -4,28 +4,22 @@ import json
 def parse(data):
     
     total_unread = data['inbox']['summary']['unread_count']
-    total_unseen = data['inbox']['summary']['unseen_count']
-
+    
     packet = "\n###############################################\n\n"
-    packet += "no. of People who messaged me: " + str(total_unseen)
+    packet += "no. of People who messaged me: " + str(total_unread)
 
     user = 0
-    while total_unseen > 0:
+    while total_unread > 0:
         
-        packet += "\n\n-------------------------------------------------------------------------------\n\n"
-
         unread = data['inbox']['data'][user]['unread']
-        unseen = data['inbox']['data'][user]['unseen']
-        
         if unread:
+            packet += "\n\n-------------------------------------------------------------------------------\n\n"
             packet += "From: " + str( data['inbox']['data'][user]['comments']['data'][-1]['from']['name'] )
             for i in range(-unread,0):
                 packet += "\n"+str( data['inbox']['data'][user]['comments']['data'][i]['message'] )
-
+            total_unread -= 1
         user += 1
-        total_unseen -= unseen
         
-    
     packet += "\n\n###############################################\n"
     return packet
 

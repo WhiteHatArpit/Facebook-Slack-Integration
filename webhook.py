@@ -13,7 +13,7 @@ def posttoSlack(slack_url,app_token,access_token,packetm,packetn,count,flag):
 		return packetm,packetn
 
 	# for debugging token, check if valid
-	debug_url ="https://graph.facebook.com/v2.2/debug_token?input_token="+ access_token +"&access_token=" + app_token
+	debug_url ="https://graph.facebook.com/debug_token?input_token="+ access_token +"&access_token=" + app_token
 	prev_packetm = packetm
 	prev_packetn = packetn
 	
@@ -23,7 +23,7 @@ def posttoSlack(slack_url,app_token,access_token,packetm,packetn,count,flag):
 
 		# validation of token
 		if 'error' in data.keys():
-			packet = "access_token not valid"
+			packetm = "access_token not valid"
 		else:
 			# fetch messages data
 			try:
@@ -51,7 +51,7 @@ def posttoSlack(slack_url,app_token,access_token,packetm,packetn,count,flag):
 
 
 	except:
-		packet = "Couldnt Debug"	
+		packetm = "Couldnt Debug"	
 
 	# prepare packet with messages and notifications
 	if count % 6 == 0:

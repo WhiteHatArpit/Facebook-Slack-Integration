@@ -10,6 +10,7 @@ import logging
 logging.basicConfig()
 
 sched = BlockingScheduler()
+
 packetm = ""
 packetn = ""
 count = 0
@@ -29,6 +30,7 @@ if flag==0:
     posttoSlack(slack_url,app_token,access_token,packetm,packetn,count,0)
     exit()
 
+url = "https://facebook-slack-integration.herokuapp.com/"
 
 packetm,packetn = posttoSlack(slack_url,app_token,access_token,packetm,packetn,count,1)
 count += 1
@@ -42,8 +44,13 @@ def timed_job():
     global packetm
     global packetn
     
+    temp = request.get(url)
+
     packetm,packetn = posttoSlack(slack_url,app_token,access_token,packetm,packetn,count,1)
     count += 1
     print "Polled: ",count # check logs
     
 sched.start()
+
+
+
