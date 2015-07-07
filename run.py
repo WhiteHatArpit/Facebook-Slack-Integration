@@ -21,7 +21,6 @@ app_id = os.environ['app_id']
 app_secret = os.environ['app_secret']
 app_token = app_id + "|" + app_secret
 access_token = os.environ['access_token']
-heroku_url = os.environ['heroku_url']
 
 # extend token if short lived, check for permissions
 access_token,flag = extendtoken(app_id,app_secret,access_token)

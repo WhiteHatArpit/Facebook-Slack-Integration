@@ -44,12 +44,12 @@ Purpose of this integration is to receive a message on Slack for new Notificatio
 
 ## Using Facebook-Slack-Integration with slack
 
-After deploying, Facebook-Slack-Integration will keeping running as a background worker and checking new fb messages every time the app is pinged while checking new fb notifications every 6th time to keep you updated at your chosen slack channel for the webhook.
+After above steps, Facebook-Slack-Integration will check new fb messages every time the app is pinged by the service you chose while checking new fb notifications every 6th time to keep you updated at your chosen slack channel for the webhook.
 
 
 ## Limitations
 
-You will need to re-generate your facebook access token (step 3) every 2months. This is a restriction made by fb api for security reasons.
+You will need to re-generate your facebook access token (step 3) every 2 months. This is a restriction made by fb api for security reasons.
 
 
 ## Support or Contact
