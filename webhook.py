@@ -4,14 +4,8 @@ from parse import parse,parsenotif
 from fetch import fetch,fetchnotif
 
 # fetch, parse and post to slack
-def posttoSlack(slack_url,app_token,access_token,packetm,packetn,count,flag):
+def posttoSlack(slack_url,app_token,access_token,packetm,packetn,count):
 	
-	# exit in case of bad token
-	if flag==0:
-		payload={"text": access_token }
-		response = requests.post(slack_url,json.dumps(payload))
-		return packetm,packetn
-
 	# for debugging token, check if valid
 	debug_url ="https://graph.facebook.com/debug_token?input_token="+ access_token +"&access_token=" + app_token
 	prev_packetm = packetm

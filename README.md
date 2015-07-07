@@ -27,7 +27,7 @@ Purpose of this integration is to receive a message on Slack for new Notificatio
 	* Click `get access token` and enter the token generated as `access_token` in config variables  at deployment stage.
 	![fb access token](img/fb_access_token.png)
 
-4. Deploying
+4. Deploying:
 	* Deploy on [heroku](https://www.heroku.com/) by creating a [new app](https://dashboard.heroku.com/new).
 	* Set config variables `slack_url` `app_id` `app_secret` `access_token` in the settings tab of your app.
 	![heroku config variables](img/heroku_config_variables.png)
@@ -35,11 +35,16 @@ Purpose of this integration is to receive a message on Slack for new Notificatio
 	* Fork and clone this repository to you local. 
 	* Add heroku remote to your local repo using the deploy instructions in the deploy tab of your heroku app.
 	* Push to remote using command:  `git push heroku master`
-	* Run command to start your app: `heroku ps:scale clock=1`
+	* Check `heroku ps` to confirm that you web is working otherwise run command to start your app: `heroku ps:scale web=1`
+
+5. Keeping Active (for heroku deploys):
+	* Heroku tends to kill the dyno if the app route is inactive for 30mins (may change). Hence, we will use one of the ping services available online. I chose [HerokuPing](http://www.herokuping.com/). 
+	* Just submit your heroku app url there and it will ping your app every 10mins, firing up the facebook checking functions.
+	![herokuping](img/herokuping.png)
 
 ## Using Facebook-Slack-Integration with slack
 
-After deploying, Facebook-Slack-Integration will keeping running as a background worker and checking new fb messages every 10 mins while checking new fb notifications every 1 hour to keep you updated at your chosen slack channel for the webhook.
+After deploying, Facebook-Slack-Integration will keeping running as a background worker and checking new fb messages every time the app is pinged while checking new fb notifications every 6th time to keep you updated at your chosen slack channel for the webhook.
 
 
 ## Limitations
