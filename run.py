@@ -5,10 +5,11 @@ from time import sleep
 from extendtoken import extendtoken
 from webhook import posttoSlack
 import requests
-import json
 
-#for running on local, make a file 'init.py' where you set the environ variables
-#from init import *
+try:
+	from init import *	#for local env variables
+except:
+	pass
 
 app = Flask(__name__)
 
